@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Map Art Generator</title>
+
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+
+  <!-- SIDEBAR -->
+  <div id="sidebar">
+
+    <h2>🎨 Map Art Studio</h2>
+
+    <label>Search Location</label>
+    <input id="searchBox" placeholder="City, place..." />
+
+    <label>Theme</label>
+    <select id="themeSelect"></select>
+
+    <label>Roads</label>
+    <input type="checkbox" id="roadsToggle" checked />
+
+    <label>Buildings</label>
+    <input type="checkbox" id="buildingToggle" checked />
+
+    <label>Labels</label>
+    <input type="checkbox" id="labelToggle" checked />
+
+    <hr/>
+
+    <label>Primary Color</label>
+    <input type="color" id="primaryColor"/>
+
+    <label>Water Color</label>
+    <input type="color" id="waterColor"/>
+
+    <label>Land Color</label>
+    <input type="color" id="landColor"/>
+
+    <hr/>
+
+    <label>Title</label>
+    <input id="titleText" placeholder="My Place"/>
+
+    <label>Subtitle</label>
+    <input id="subtitleText" placeholder="Coordinates or memory"/>
+
+    <hr/>
+
+    <button id="addMarker">Add Marker</button>
+    <button id="exportPNG">Export PNG</button>
+    <button id="exportPDF">Export PDF</button>
+
+  </div>
+
+  <!-- MAP AREA -->
+  <div id="mapWrap">
+    <div id="map"></div>
+
+    <!-- poster overlay -->
+    <div id="posterOverlay">
+      <h1 id="posterTitle"></h1>
+      <p id="posterSubtitle"></p>
+    </div>
+  </div>
+
+</div>
+
+<script src="themes/themes.js"></script>
+<script src="components/export.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
