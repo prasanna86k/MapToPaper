@@ -1,52 +1,111 @@
-body {
+* {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #111;
-  color: white;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* MAIN LAYOUT */
 #app {
   display: flex;
   height: 100vh;
+  width: 100%;
 }
 
+/* LEFT PANEL */
 #sidebar {
-  width: 320px;
-  background: #1c1c1c;
-  padding: 15px;
+  width: 340px;
+  background: #ffffff;
+  color: #222;
+  padding: 16px;
   overflow-y: auto;
+  border-right: 1px solid #ddd;
+}
+
+#sidebar h2 {
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+#sidebar label {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 #sidebar input,
-#sidebar select {
+#sidebar select,
+#sidebar button {
   width: 100%;
-  margin: 5px 0 10px;
-  padding: 6px;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 13px;
 }
 
+/* BUTTONS */
+#sidebar button {
+  background: #1f6feb;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.2s;
+}
+
+#sidebar button:hover {
+  background: #1257c9;
+}
+
+/* MAP WRAPPER */
 #mapWrap {
   flex: 1;
   position: relative;
+  height: 100vh;
+  width: 100%;
+  background: #eaeaea;
 }
 
+/* MAP ITSELF (CRITICAL FIX) */
 #map {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
 }
 
+/* POSTER TEXT OVERLAY */
 #posterOverlay {
   position: absolute;
   bottom: 40px;
   left: 40px;
   z-index: 10;
+  color: #111;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 10px 14px;
+  border-radius: 8px;
+  backdrop-filter: blur(6px);
 }
 
 #posterTitle {
-  font-size: 28px;
-  margin: 0;
+  font-size: 22px;
+  margin-bottom: 4px;
 }
 
 #posterSubtitle {
-  font-size: 14px;
-  opacity: 0.7;
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+/* REMOVE SCROLL ISSUES */
+html, body {
+  height: 100%;
 }

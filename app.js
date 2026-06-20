@@ -68,3 +68,7 @@ title.oninput = () => {
 subtitle.oninput = () => {
   document.getElementById("posterSubtitle").innerText = subtitle.value;
 };
+
+setTimeout(() => {
+  map.resize();
+}, 500);
