@@ -1,25 +1,46 @@
-async function exportImage(type) {
-  const canvas = await html2canvas(document.querySelector("#mapWrap"), {
-    scale: 2
+//png export 
+document.getElementById("exportPNG").onclick = async () => {
+  const element = document.getElementById("mapWrap");
+
+  const config = paperSizes[currentPaper];
+
+  await map.invalidateSize();
+
+  const canvas = await html2canvas(element, {
+    useCORS: true,
+    scale: config.scale,
+    backgroundColor: null
   });
 
-  const img = canvas.toDataURL("image/png");
+  const link = document.createElement("a");
+  link.download = `map-${currentPaper}-${currentOrientation}.png`;
+  link.href = canvas.toDataURL("image/png");
+  link.click();
+};
 
-  if (type === "png") {
-    const a = document.createElement("a");
-    a.href = img;
-    a.download = "map-art.png";
-    a.click();
-  }
+//pdf export 
+document.getElementById("exportPDF").onclick = async () => {
+  const { jsPDF } = window.jspdf;
 
-  if (type === "pdf") {
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF("landscape");
+  const element = document.getElementById("mapWrap");
+  const config = paperSizes[currentPaper];
 
-    pdf.addImage(img, "PNG", 0, 0, 280, 160);
-    pdf.save("map-art.pdf");
-  }
-}
+  await map.invalidateSize();
 
-document.getElementById("exportPNG").onclick = () => exportImage("png");
-document.getElementById("exportPDF").onclick = () => exportImage("pdf");
+  const canvas = await html2canvas(element, {
+    useCORS: true,
+    scale: config.scale,
+    backgroundColor: null
+  });
+
+  const imgData = canvas.toDataURL("image/png");
+
+  const pdf = new jsPDF({
+    orientation: currentOrientation,
+    unit: "mm",
+    format: currentPaper.toLowerCase()
+  });
+
+  pdf.addImage(imgData, "PNG", 0, 0, config.w, config.h);
+  pdf.save(`map-${currentPaper}-${currentOrientation}.pdf`);
+};

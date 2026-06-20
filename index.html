@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Map Art Generator</title>
 
-  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
 
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 
 <body>
@@ -57,6 +59,22 @@
     <input id="subtitleText" placeholder="Coordinates or memory"/>
 
     <hr/>
+
+    <label>Paper Size</label>
+<select id="paperSize">
+  <option value="A4">A4</option>
+  <option value="A3">A3</option>
+  <option value="A2">A2</option>
+</select>
+<br>
+<hr/>
+<label>Orientation</label>
+<select id="orientation">
+  <option value="portrait">Portrait</option>
+  <option value="landscape">Landscape</option>
+</select>
+
+<hr/>
 
     <button id="addMarker">Add Marker</button>
     <button id="exportPNG">Export PNG</button>
